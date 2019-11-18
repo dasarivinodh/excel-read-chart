@@ -1,16 +1,58 @@
-<h1>Configuration Stats</h1>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb alert alert-success">
+    <li class="breadcrumb-item active" aria-current="page">
+      <h3>CBT Dashboard</h3>
+    </li>
+  </ol>
+</nav>
 
-<div>
-  <div>
-    <div style="display: block;width:500px">
-      <canvas
-        baseChart
-        [data]="doughnutChartData"
-        [labels]="doughnutChartLabels"
-        [chartType]="doughnutChartType"
-        [colors]="doughnutChartColors"
-      >
-      </canvas>
+<div class="container">
+  <div class="row">
+    <div class="input-group col col-sm-4">
+      <div class="custom-file">
+        <input
+          type="file"
+          class="custom-file-input"
+          id="inputexcel"
+          (change)="changeLabel($event)"
+        />
+        <label class="custom-file-label" id="fileUploadLabel" for="inputexcel"
+          >CBT.xlsx
+        </label>
+      </div>
     </div>
+    <div *ngIf="showCBTData" class="col-sm-6">
+      <p-chart
+        type="doughnut"
+        [data]="data"
+        (onDataSelect)="selectData($event)"
+      ></p-chart>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div *ngIf="showCBTData">
+    <p-table
+      [value]="tableData"
+      selectionMode="single"
+      [(selection)]="selectedLocation"
+      (onRowSelect)="onRowSelect($event)"
+      [responsive]="true"
+      [paginator]="true"
+      [rows]="05"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th>TestCase</th>
+          <th>Configuration</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-car>
+        <tr>
+          <td>{{ car.Testcase }}</td>
+          <td>{{ car.Config }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
   </div>
 </div>
