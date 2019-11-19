@@ -1,4 +1,12 @@
-# KernalApp
+# Read Excel
+
+This is for reading excel sheet and show visual charts in browser
+
+## Tech Stack / Packages Used 
+Angular
+Prime NG
+Bootstrap
+font awesome
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.4.
 
